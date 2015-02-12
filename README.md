@@ -6,3 +6,4 @@
 - run `nano cw2out.txt` to see results
 
 If you just want to type sql queries into the live shell, run `psql -h db.doc.ic.ac.uk -d family_history -U lab -W`
+In the psql shell, when you are shown a faily large table, it will take you to a separate screen with just the table. To return to the shell hit `q`.
