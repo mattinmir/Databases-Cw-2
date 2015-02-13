@@ -38,24 +38,17 @@ SELECT gender AS child_gender, mother
 FROM person
 WHERE mother IS NOT NULL
 ORDER BY mother
+
+-- Returns all genders in the table
+SELECT DISTINCT gender
+FROM person;
+
 -- Returns cross of all genders with all known mothers
 SELECT gender AS all_genders, mother
-FROM (SELECT DISTINCT mother FROM person) AS mother CROSS JOIN (SELECT DISTINCT gender FROM person) AS gender 
+FROM (SELECT DISTINCT mother FROM person) AS mothers CROSS JOIN (SELECT DISTINCT gender FROM person) AS genders 
 WHERE mother IS NOT NULL 
 ORDER BY mother
 
-
-SELECT DISTINCT mother AS name
-FROM 	((SELECT gender AS child_gender, mother
-	FROM person
-	WHERE mother IS NOT NULL)
-
-	INTERSECT
-
-	(SELECT gender, mother
-	FROM (SELECT DISTINCT mother FROM person) AS mothers CROSS JOIN (SELECT DISTINCT gender FROM person) AS genders
-	WHERE mother IS NOT NULL )) AS MO_GEN;
-		
 
 -- Q6 returns (name,father,mother)
 
