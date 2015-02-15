@@ -48,13 +48,13 @@ FROM
 ) AS dist_mogen_count
 
 WHERE count = 	( -- Pick out mothers who have the same number of genders of children as the number of genders in the table
-					SELECT COUNT(*) -- Returns number of genders that exist in the table
-					FROM 
-					(
-						SELECT DISTINCT gender -- Returns a column of each gender that exists in the table
-						FROM person
-					) AS genders
-				) 
+			SELECT COUNT(*) -- Returns number of genders that exist in the table
+			FROM 
+			(
+				SELECT DISTINCT gender -- Returns a column of each gender that exists in the table
+				FROM person
+			) AS genders
+		) 
 ;
 
 
