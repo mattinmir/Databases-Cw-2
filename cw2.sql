@@ -33,21 +33,30 @@ ORDER BY name;
 
 -- Q5 returns (name)
 
--- Returns all mothers with the genders of each of their children
-SELECT gender AS child_gender, mother
-FROM person
-WHERE mother IS NOT NULL
-ORDER BY mother
+SELECT mother AS name
+FROM
+(
+	SELECT mother, COUNT(mother) AS count -- Returns number of genders of children each mother has
+	FROM 
+	(
+		SELECT DISTINCT gender AS child_gender, mother -- Returns mothers with each gender of child they have
+		FROM person
+		WHERE mother IS NOT NULL
+	) AS dist_mogen
+	WHERE mother IS NOT NULL
+	GROUP BY mother
+) AS dist_mogen_count
 
--- Returns all genders in the table
-SELECT DISTINCT gender
-FROM person;
+WHERE count = 	( -- Pick out mothers who have the same number of genders of children as the number of genders in the table
+					SELECT COUNT(*) -- Returns number of genders that exist in the table
+					FROM 
+					(
+						SELECT DISTINCT gender -- Returns a column of each gender that exists in the table
+						FROM person
+					) AS genders
+				) 
+;
 
--- Returns cross of all genders with all known mothers
-SELECT gender AS all_genders, mother
-FROM (SELECT DISTINCT mother FROM person) AS mothers CROSS JOIN (SELECT DISTINCT gender FROM person) AS genders 
-WHERE mother IS NOT NULL 
-ORDER BY mother
 
 
 -- Q6 returns (name,father,mother)
