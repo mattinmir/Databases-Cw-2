@@ -55,6 +55,7 @@ WHERE count = 	( -- Pick out mothers who have the same number of genders of chil
 				FROM person
 			) AS genders
 		) 
+ORDER BY name
 ;
 
 
@@ -66,10 +67,8 @@ WHERE count = 	( -- Pick out mothers who have the same number of genders of chil
 SELECT name, father, mother
 FROM
 (
-
 	SELECT name, dob, mother, father  FROM person -- Returns all families with both parents, and those with unknown mothers
-	WHERE mother IS NOT NULL
-	AND father IS NOT NULL
+	WHERE father IS NOT NULL
 ) AS families_ukmo
 WHERE mother IS NULL
 OR dob =(
@@ -79,9 +78,9 @@ OR dob =(
 				SELECT name, dob, mother, father  FROM person -- Returns only families where both parent is known
 				WHERE mother IS NOT NULL
 				AND father IS NOT NULL
-				AND mother IS NOT NULL
 			) AS families
 			WHERE mother = families_ukmo.mother
 			AND father = families_ukmo.father
 		)
+ORDER BY name
 ;
