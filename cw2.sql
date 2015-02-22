@@ -65,22 +65,20 @@ ORDER BY name
 
 
 SELECT name, father, mother
-FROM
-(
-	SELECT name, dob, mother, father  FROM person -- Returns all families with both parents, and those with unknown mothers
-	WHERE father IS NOT NULL
-) AS families_ukmo
-WHERE mother IS NULL
-OR dob =(
-			SELECT MIN(dob) --Returns oldest child of family
-			FROM
-			(
-				SELECT name, dob, mother, father  FROM person -- Returns only families where both parent is known
-				WHERE mother IS NOT NULL
-				AND father IS NOT NULL
-			) AS families
-			WHERE mother = families_ukmo.mother
-			AND father = families_ukmo.father
-		)
+FROM person AS families
+WHERE father IS NOT NULL
+AND mother IS NOT NULL
+AND dob =(
+		SELECT MIN(dob) --Returns oldest child of family
+		FROM
+		(
+			SELECT name, dob, mother, father -- Returns only families where both parent is known 
+			FROM person 
+			WHERE mother IS NOT NULL
+			AND father IS NOT NULL
+		) AS families2
+		WHERE mother = families.mother
+		AND father = families.father
+	)
 ORDER BY name
 ;
