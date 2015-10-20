@@ -7,3 +7,8 @@
 
 If you just want to type sql queries into the live shell, run `psql -h db.doc.ic.ac.uk -d family_history -U lab -W`
 In the psql shell, when you are shown a faily large table, it will take you to a separate screen with just the table. To return to the shell hit `q`.
+
+To copy files over ssh, use `scp`:
+
+Localhost -> Remote host: `scp /path/to/cw2.sql mm5213@shell2.doc.ic.ac.uk:/some/remote/directory`
+Remote Host -> Localhost: `scp mm5213@shell2.doc.ic.ac.uk:/path/to/cw2.sql /some/local/directory`
