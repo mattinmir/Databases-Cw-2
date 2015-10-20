@@ -11,4 +11,5 @@ In the psql shell, when you are shown a faily large table, it will take you to a
 To copy files over ssh, use `scp`:
 
 Localhost -> Remote host: `scp /path/to/cw2.sql mm5213@shell2.doc.ic.ac.uk:/some/remote/directory`
+
 Remote Host -> Localhost: `scp mm5213@shell2.doc.ic.ac.uk:/path/to/cw2.sql /some/local/directory`
