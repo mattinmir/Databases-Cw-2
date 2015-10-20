@@ -1,6 +1,6 @@
 # Databases-Cw-2
 
-- ssh into a DoC coputer using `ssh shell1.doc.ic.ac.uk` and enter password
+- ssh into a DoC coputer using `ssh mm5213@shell1.doc.ic.ac.uk` and enter password
 - create cw2.sql file and paste contents from this repo: copy text to be pasted to clipboard. Then run `vim cw2.txt`, hit `v` to enable visual selection, use mouse wheel or arrow keys to select all the text, hit `d` to delete, then `i` to enter insert mode, and `ctrl+shift+v` to paste
 - run `psql -h db.doc.ic.ac.uk -d family_history -U lab -W -f cw2.sql -o cw2out.txt` to run queries
 - run `nano cw2out.txt` to see results
